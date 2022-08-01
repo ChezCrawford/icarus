@@ -1,0 +1,496 @@
+{
+    "system_id": 1111111,
+    "granularity": "day",
+    "total_devices": 1,
+    "start_at": 1663214400,
+    "end_at": 1663300800,
+    "items": "intervals",
+    "intervals": [
+        {
+            "end_at": 1663215300,
+            "devices_reporting": 1,
+            "enwh": 309
+        },
+        {
+            "end_at": 1663216200,
+            "devices_reporting": 1,
+            "enwh": 89
+        },
+        {
+            "end_at": 1663217100,
+            "devices_reporting": 1,
+            "enwh": 370
+        },
+        {
+            "end_at": 1663218000,
+            "devices_reporting": 1,
+            "enwh": 97
+        },
+        {
+            "end_at": 1663218900,
+            "devices_reporting": 1,
+            "enwh": 77
+        },
+        {
+            "end_at": 1663219800,
+            "devices_reporting": 1,
+            "enwh": 257
+        },
+        {
+            "end_at": 1663220700,
+            "devices_reporting": 1,
+            "enwh": 202
+        },
+        {
+            "end_at": 1663221600,
+            "devices_reporting": 1,
+            "enwh": 110
+        },
+        {
+            "end_at": 1663222500,
+            "devices_reporting": 1,
+            "enwh": 108
+        },
+        {
+            "end_at": 1663223400,
+            "devices_reporting": 1,
+            "enwh": 87
+        },
+        {
+            "end_at": 1663224300,
+            "devices_reporting": 1,
+            "enwh": 96
+        },
+        {
+            "end_at": 1663225200,
+            "devices_reporting": 1,
+            "enwh": 155
+        },
+        {
+            "end_at": 1663226100,
+            "devices_reporting": 1,
+            "enwh": 280
+        },
+        {
+            "end_at": 1663227000,
+            "devices_reporting": 1,
+            "enwh": 93
+        },
+        {
+            "end_at": 1663227900,
+            "devices_reporting": 1,
+            "enwh": 88
+        },
+        {
+            "end_at": 1663228800,
+            "devices_reporting": 1,
+            "enwh": 95
+        },
+        {
+            "end_at": 1663229700,
+            "devices_reporting": 1,
+            "enwh": 102
+        },
+        {
+            "end_at": 1663230600,
+            "devices_reporting": 1,
+            "enwh": 116
+        },
+        {
+            "end_at": 1663231500,
+            "devices_reporting": 1,
+            "enwh": 89
+        },
+        {
+            "end_at": 1663232400,
+            "devices_reporting": 1,
+            "enwh": 92
+        },
+        {
+            "end_at": 1663233300,
+            "devices_reporting": 1,
+            "enwh": 90
+        },
+        {
+            "end_at": 1663234200,
+            "devices_reporting": 1,
+            "enwh": 104
+        },
+        {
+            "end_at": 1663235100,
+            "devices_reporting": 1,
+            "enwh": 384
+        },
+        {
+            "end_at": 1663236000,
+            "devices_reporting": 1,
+            "enwh": 86
+        },
+        {
+            "end_at": 1663236900,
+            "devices_reporting": 1,
+            "enwh": 254
+        },
+        {
+            "end_at": 1663237800,
+            "devices_reporting": 1,
+            "enwh": 498
+        },
+        {
+            "end_at": 1663238700,
+            "devices_reporting": 1,
+            "enwh": 906
+        },
+        {
+            "end_at": 1663239600,
+            "devices_reporting": 1,
+            "enwh": 569
+        },
+        {
+            "end_at": 1663240500,
+            "devices_reporting": 1,
+            "enwh": 116
+        },
+        {
+            "end_at": 1663241400,
+            "devices_reporting": 1,
+            "enwh": 111
+        },
+        {
+            "end_at": 1663242300,
+            "devices_reporting": 1,
+            "enwh": 83
+        },
+        {
+            "end_at": 1663243200,
+            "devices_reporting": 1,
+            "enwh": 442
+        },
+        {
+            "end_at": 1663244100,
+            "devices_reporting": 1,
+            "enwh": 156
+        },
+        {
+            "end_at": 1663245000,
+            "devices_reporting": 1,
+            "enwh": 99
+        },
+        {
+            "end_at": 1663245900,
+            "devices_reporting": 1,
+            "enwh": 118
+        },
+        {
+            "end_at": 1663246800,
+            "devices_reporting": 1,
+            "enwh": 88
+        },
+        {
+            "end_at": 1663247700,
+            "devices_reporting": 1,
+            "enwh": 138
+        },
+        {
+            "end_at": 1663248600,
+            "devices_reporting": 1,
+            "enwh": 133
+        },
+        {
+            "end_at": 1663249500,
+            "devices_reporting": 1,
+            "enwh": 122
+        },
+        {
+            "end_at": 1663250400,
+            "devices_reporting": 1,
+            "enwh": 124
+        },
+        {
+            "end_at": 1663251300,
+            "devices_reporting": 1,
+            "enwh": 367
+        },
+        {
+            "end_at": 1663252200,
+            "devices_reporting": 1,
+            "enwh": 122
+        },
+        {
+            "end_at": 1663253100,
+            "devices_reporting": 1,
+            "enwh": 126
+        },
+        {
+            "end_at": 1663254000,
+            "devices_reporting": 1,
+            "enwh": 148
+        },
+        {
+            "end_at": 1663254900,
+            "devices_reporting": 1,
+            "enwh": 213
+        },
+        {
+            "end_at": 1663255800,
+            "devices_reporting": 1,
+            "enwh": 142
+        },
+        {
+            "end_at": 1663256700,
+            "devices_reporting": 1,
+            "enwh": 150
+        },
+        {
+            "end_at": 1663257600,
+            "devices_reporting": 1,
+            "enwh": 142
+        },
+        {
+            "end_at": 1663258500,
+            "devices_reporting": 1,
+            "enwh": 180
+        },
+        {
+            "end_at": 1663259400,
+            "devices_reporting": 1,
+            "enwh": 341
+        },
+        {
+            "end_at": 1663260300,
+            "devices_reporting": 1,
+            "enwh": 137
+        },
+        {
+            "end_at": 1663261200,
+            "devices_reporting": 1,
+            "enwh": 388
+        },
+        {
+            "end_at": 1663262100,
+            "devices_reporting": 1,
+            "enwh": 122
+        },
+        {
+            "end_at": 1663263000,
+            "devices_reporting": 1,
+            "enwh": 124
+        },
+        {
+            "end_at": 1663263900,
+            "devices_reporting": 1,
+            "enwh": 117
+        },
+        {
+            "end_at": 1663264800,
+            "devices_reporting": 1,
+            "enwh": 144
+        },
+        {
+            "end_at": 1663265700,
+            "devices_reporting": 1,
+            "enwh": 133
+        },
+        {
+            "end_at": 1663266600,
+            "devices_reporting": 1,
+            "enwh": 130
+        },
+        {
+            "end_at": 1663267500,
+            "devices_reporting": 1,
+            "enwh": 118
+        },
+        {
+            "end_at": 1663268400,
+            "devices_reporting": 1,
+            "enwh": 423
+        },
+        {
+            "end_at": 1663269300,
+            "devices_reporting": 1,
+            "enwh": 180
+        },
+        {
+            "end_at": 1663270200,
+            "devices_reporting": 1,
+            "enwh": 490
+        },
+        {
+            "end_at": 1663271100,
+            "devices_reporting": 1,
+            "enwh": 317
+        },
+        {
+            "end_at": 1663272000,
+            "devices_reporting": 1,
+            "enwh": 294
+        },
+        {
+            "end_at": 1663272900,
+            "devices_reporting": 1,
+            "enwh": 523
+        },
+        {
+            "end_at": 1663273800,
+            "devices_reporting": 1,
+            "enwh": 258
+        },
+        {
+            "end_at": 1663274700,
+            "devices_reporting": 1,
+            "enwh": 342
+        },
+        {
+            "end_at": 1663275600,
+            "devices_reporting": 1,
+            "enwh": 836
+        },
+        {
+            "end_at": 1663276500,
+            "devices_reporting": 1,
+            "enwh": 288
+        },
+        {
+            "end_at": 1663277400,
+            "devices_reporting": 1,
+            "enwh": 466
+        },
+        {
+            "end_at": 1663278300,
+            "devices_reporting": 1,
+            "enwh": 997
+        },
+        {
+            "end_at": 1663279200,
+            "devices_reporting": 1,
+            "enwh": 579
+        },
+        {
+            "end_at": 1663280100,
+            "devices_reporting": 1,
+            "enwh": 1487
+        },
+        {
+            "end_at": 1663281000,
+            "devices_reporting": 1,
+            "enwh": 1027
+        },
+        {
+            "end_at": 1663281900,
+            "devices_reporting": 1,
+            "enwh": 567
+        },
+        {
+            "end_at": 1663282800,
+            "devices_reporting": 1,
+            "enwh": 546
+        },
+        {
+            "end_at": 1663283700,
+            "devices_reporting": 1,
+            "enwh": 877
+        },
+        {
+            "end_at": 1663284600,
+            "devices_reporting": 1,
+            "enwh": 282
+        },
+        {
+            "end_at": 1663285500,
+            "devices_reporting": 1,
+            "enwh": 355
+        },
+        {
+            "end_at": 1663286400,
+            "devices_reporting": 1,
+            "enwh": 117
+        },
+        {
+            "end_at": 1663287300,
+            "devices_reporting": 1,
+            "enwh": 937
+        },
+        {
+            "end_at": 1663288200,
+            "devices_reporting": 1,
+            "enwh": 906
+        },
+        {
+            "end_at": 1663289100,
+            "devices_reporting": 1,
+            "enwh": 838
+        },
+        {
+            "end_at": 1663290000,
+            "devices_reporting": 1,
+            "enwh": 468
+        },
+        {
+            "end_at": 1663290900,
+            "devices_reporting": 1,
+            "enwh": 564
+        },
+        {
+            "end_at": 1663291800,
+            "devices_reporting": 1,
+            "enwh": 634
+        },
+        {
+            "end_at": 1663292700,
+            "devices_reporting": 1,
+            "enwh": 470
+        },
+        {
+            "end_at": 1663293600,
+            "devices_reporting": 1,
+            "enwh": 472
+        },
+        {
+            "end_at": 1663294500,
+            "devices_reporting": 1,
+            "enwh": 243
+        },
+        {
+            "end_at": 1663295400,
+            "devices_reporting": 1,
+            "enwh": 289
+        },
+        {
+            "end_at": 1663296300,
+            "devices_reporting": 1,
+            "enwh": 428
+        },
+        {
+            "end_at": 1663297200,
+            "devices_reporting": 1,
+            "enwh": 125
+        },
+        {
+            "end_at": 1663298100,
+            "devices_reporting": 1,
+            "enwh": 405
+        },
+        {
+            "end_at": 1663299000,
+            "devices_reporting": 1,
+            "enwh": 93
+        },
+        {
+            "end_at": 1663299900,
+            "devices_reporting": 1,
+            "enwh": 350
+        },
+        {
+            "end_at": 1663300800,
+            "devices_reporting": 1,
+            "enwh": 142
+        }
+    ],
+    "meta": {
+        "status": "normal",
+        "last_report_at": 1663670079,
+        "last_energy_at": 1663669800,
+        "operational_at": 1646415900
+    }
+}

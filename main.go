@@ -1,29 +1,64 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"icarus/internal/enphase"
-	"time"
-)
+	"icarus/internal/overwatch"
 
-const AccessToken string = "some-token"
-const ApiKey string = "some-key"
-const SystemId string = "123"
+	"github.com/PagerDuty/go-pagerduty"
+)
 
 func main() {
 	fmt.Println("Let's become enlightened...")
-	getSummary()
+	config := overwatch.LoadConfig()
+
+	// client := enphase.NewClient(config.EnphaseAccessToken, config.EnphaseApiKey, config.EnphaseSystemId)
+	client := enphase.NewFileClient()
+
+	watch := overwatch.NewOverwatch(client)
+	watch.Start()
+
+	pdClient := pagerduty.NewClient(config.PdApiKey)
+
+	var opts pagerduty.GetCurrentUserOptions
+	ctx := context.Background()
+	user, err := pdClient.GetCurrentUserWithContext(ctx, opts)
+
+	fmt.Printf("User: %+v, Error: %+v", user, err)
 }
 
-func getSummary() {
-	client := enphase.NewClient(AccessToken, ApiKey)
-	summary, _ := client.GetSystemSummary(SystemId)
+func getSummary(client enphase.Client) {
+	summary, _ := client.GetSystemSummary()
 
-	// fmt.Printf("System Summary: %+v\n", summary)
-	fmt.Printf("Last report time: %s\n", parseTime(summary.LastReportAt).String())
-	fmt.Printf("Last interval time: %s\n", parseTime(summary.LastIntervalEndAt).String())
+	fmt.Printf("System Summary: %+v\n", summary)
+	startTime := overwatch.ParseTime(summary.LastReportAt)
+	endTime := overwatch.ParseTime(summary.LastIntervalEndAt)
+	fmt.Printf("Interval: [%+v , %+v] \n", startTime.UTC(), endTime.UTC())
 }
 
-func parseTime(unixSeconds int64) time.Time {
-	return time.Unix(unixSeconds, 0)
+func getConsumptionMeter(client enphase.Client) {
+	consumption, _ := client.GetConsumptionMeter()
+
+	fmt.Printf("Consumption Meter: %+v\n", consumption)
+	startTime := overwatch.ParseTime(consumption.StartAt)
+	endTime := overwatch.ParseTime(consumption.EndAt)
+	fmt.Printf("Interval: [%+v , %+v] \n", startTime.UTC(), endTime.UTC())
+}
+
+func getProductionMeter(client enphase.Client) {
+	production, _ := client.GetProductionMeter()
+
+	fmt.Printf("Production Meter: %+v\n", production)
+	startTime := overwatch.ParseTime(production.StartAt)
+	endTime := overwatch.ParseTime(production.EndAt)
+	fmt.Printf("Interval: [%+v , %+v] \n", startTime.UTC(), endTime.UTC())
+}
+
+func monitor(client enphase.Client) {
+	consumption, _ := client.GetConsumptionMeter()
+	production, _ := client.GetProductionMeter()
+
+	generatingExcess := overwatch.Evaluate(*consumption, *production)
+	fmt.Printf("Excess power being generated: %+v\n", generatingExcess)
 }
