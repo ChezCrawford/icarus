@@ -1,7 +1,6 @@
 package overwatch
 
 import (
-	"fmt"
 	"icarus/internal/enphase"
 	"log"
 	"math"
@@ -15,7 +14,7 @@ type EnergyDelta struct {
 
 func Evaluate(consumptionMeter enphase.ConsumptionMeter, productionMeter enphase.ProductionMeter) bool {
 	deltas := CalculateNets(consumptionMeter, productionMeter)
-	// logDeltas(deltas)
+	logDeltas(deltas)
 
 	return generatingExcess(deltas)
 }
@@ -29,7 +28,7 @@ func CalculateNets(consumptionMeter enphase.ConsumptionMeter, productionMeter en
 
 	if consumption.EndAt != production.EndAt {
 		// Right now we are not very smrt.
-		log.Println("Meter data not taken at matching intervals.")
+		log.Panic("Meter data not taken at matching intervals.")
 		return nil
 	}
 
@@ -51,11 +50,11 @@ func CalculateNets(consumptionMeter enphase.ConsumptionMeter, productionMeter en
 
 func logDeltas(deltas []EnergyDelta) {
 	for _, delta := range deltas {
-		fmt.Printf("Delta: %+v\n", delta)
+		log.Printf("Delta: %+v", delta)
 	}
 
 	for _, delta := range positiveDeltas(deltas) {
-		fmt.Printf("Positive Delta: %+v\n", delta)
+		log.Printf("Positive Delta: %+v", delta)
 	}
 }
 

@@ -3,7 +3,7 @@ package enphase
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
+	"log"
 	"math"
 	"os"
 )
@@ -19,19 +19,19 @@ func NewFileClient() *FileClient {
 	// Interesting intervals:
 	// 30 is where production begins
 	// 97 intervals in total
-	startInterval := 135
+	startInterval := 1
 
 	consumptionFile := "test/data/2022-09-15-consumption-meter.json"
 	productionFile := "test/data/2022-09-15-production-meter.json"
 
 	var consumption ConsumptionMeter
 	if err := loadFromFile(consumptionFile, &consumption); err != nil {
-		panic(fmt.Sprintf("Unable to load data from file, error=%+v", err))
+		log.Panicf("Unable to load data from file, error=%+v", err)
 	}
 
 	var production ProductionMeter
 	if err := loadFromFile(productionFile, &production); err != nil {
-		panic(fmt.Sprintf("Unable to load data from file, error=%+v", err))
+		log.Panicf("Unable to load data from file, error=%+v", err)
 	}
 
 	return &FileClient{

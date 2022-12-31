@@ -1,8 +1,8 @@
 package overwatch
 
 import (
-	"fmt"
 	"icarus/internal/enphase"
+	"log"
 	"time"
 )
 
@@ -42,5 +42,5 @@ func (ow *overwatch) monitorEnergy() {
 
 	generatingExcess := Evaluate(*consumption, *production)
 
-	fmt.Printf("[%+v] Excess power being generated: %+v\n", time.Now(), generatingExcess)
+	log.Printf("Excess power being generated: %+v", generatingExcess)
 }
