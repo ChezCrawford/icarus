@@ -11,28 +11,27 @@ type Overwatch interface {
 }
 
 type overwatch struct {
-	client    enphase.Client
-	frequency int
-	ticker    *time.Ticker
+	client        enphase.Client
+	pollFrequency time.Duration
+	ticker        *time.Ticker
 }
 
-func NewOverwatch(client enphase.Client) Overwatch {
-	frequency := 5
+func NewOverwatch(client enphase.Client, pollFrequency time.Duration) Overwatch {
 	watch := overwatch{
-		client:    client,
-		frequency: frequency,
-		ticker:    nil,
+		client:        client,
+		pollFrequency: pollFrequency,
+		ticker:        nil,
 	}
 
 	return &watch
 }
 
 func (ow *overwatch) Start() {
-	ow.ticker = time.NewTicker(time.Duration(ow.frequency) * time.Second)
+	ow.ticker = time.NewTicker(ow.pollFrequency)
 
 	for range ow.ticker.C {
 		ow.monitorEnergy()
-		ow.ticker.Reset(time.Duration(ow.frequency) * time.Second)
+		ow.ticker.Reset(ow.pollFrequency)
 	}
 }
 

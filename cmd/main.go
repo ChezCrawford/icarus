@@ -18,7 +18,7 @@ func main() {
 	// client := enphase.NewClient(config.EnphaseAccessToken, config.EnphaseApiKey, config.EnphaseSystemId)
 	client := enphase.NewFileClient()
 
-	watch := overwatch.NewOverwatch(client)
+	watch := overwatch.NewOverwatch(client, config.EnphasePollFrequency)
 	watch.Start()
 
 	pdClient := pagerduty.NewClient(config.PdApiKey)
