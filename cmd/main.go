@@ -1,7 +1,6 @@
 package main
 
 import (
-	"context"
 	"icarus/internal/enphase"
 	"icarus/internal/overwatch"
 	"log"
@@ -17,15 +16,14 @@ func main() {
 
 	// client := enphase.NewClient(config.EnphaseAccessToken, config.EnphaseApiKey, config.EnphaseSystemId)
 	client := enphase.NewFileClient()
-
-	watch := overwatch.NewOverwatch(client, config.EnphasePollFrequency)
-	watch.Start()
-
 	pdClient := pagerduty.NewClient(config.PdApiKey)
 
-	var opts pagerduty.GetCurrentUserOptions
-	ctx := context.Background()
-	user, err := pdClient.GetCurrentUserWithContext(ctx, opts)
+	if err := overwatch.CheckPagerDuty(pdClient); err != nil {
+		log.Fatal(err)
+	}
 
-	log.Printf("User: %+v, Error: %+v", user, err)
+	watch := overwatch.NewOverwatch(client, pdClient, config.EnphasePollFrequency)
+	watch.Start()
+
+	log.Print("Done")
 }
