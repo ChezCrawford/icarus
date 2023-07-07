@@ -4,8 +4,6 @@ import (
 	"icarus/internal/enphase"
 	"icarus/internal/overwatch"
 	"log"
-
-	"github.com/PagerDuty/go-pagerduty"
 )
 
 func main() {
@@ -16,13 +14,9 @@ func main() {
 
 	// client := enphase.NewClient(config.EnphaseAccessToken, config.EnphaseApiKey, config.EnphaseSystemId)
 	client := enphase.NewFileClient()
-	pdClient := pagerduty.NewClient(config.PdApiKey)
+	alerter := overwatch.NewPagerDutyIncidentAlerter(config.PdServiceId, config.PdUserEmail, config.PdApiKey)
 
-	if err := overwatch.CheckPagerDuty(pdClient); err != nil {
-		log.Fatal(err)
-	}
-
-	watch := overwatch.NewOverwatch(client, pdClient, config.EnphasePollFrequency)
+	watch := overwatch.NewOverwatch(client, config.EnphasePollFrequency, alerter)
 	watch.Start()
 
 	log.Print("Done")

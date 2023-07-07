@@ -13,6 +13,8 @@ type Config struct {
 	EnphaseAccessToken   string        `split_words:"true" required:"true"`
 	EnphasePollFrequency time.Duration `split_words:"true" default:"15s"`
 	PdApiKey             string        `split_words:"true" required:"true"`
+	PdServiceId          string        `split_words:"true" required:"true"`
+	PdUserEmail          string        `split_words:"true" required:"true"`
 }
 
 func LoadConfig() Config {

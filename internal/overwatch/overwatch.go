@@ -1,29 +1,30 @@
 package overwatch
 
 import (
-	"context"
 	"icarus/internal/enphase"
 	"log"
 	"time"
-
-	"github.com/PagerDuty/go-pagerduty"
 )
 
 type Overwatch interface {
 	Start()
 }
 
+type Alerter interface {
+	ExcessPowerAlert() error
+}
+
 type overwatch struct {
+	alerter       Alerter
 	client        enphase.Client
-	pdClient      *pagerduty.Client
 	pollFrequency time.Duration
 	ticker        *time.Ticker
 }
 
-func NewOverwatch(client enphase.Client, pdClient *pagerduty.Client, pollFrequency time.Duration) Overwatch {
+func NewOverwatch(client enphase.Client, pollFrequency time.Duration, alerter Alerter) Overwatch {
 	watch := overwatch{
+		alerter:       alerter,
 		client:        client,
-		pdClient:      pdClient,
 		pollFrequency: pollFrequency,
 		ticker:        nil,
 	}
@@ -46,18 +47,10 @@ func (ow *overwatch) monitorEnergy() {
 
 	generatingExcess := Evaluate(*consumption, *production)
 	log.Printf("Excess power being generated: %+v", generatingExcess)
-}
 
-func CheckPagerDuty(pdClient *pagerduty.Client) error {
-	var opts pagerduty.ListAddonOptions
-	ctx := context.Background()
-	addons, err := pdClient.ListAddonsWithContext(ctx, opts)
-
-	log.Printf("Addons: %+v, Error: %+v", addons, err)
-
-	if err != nil {
-		return err
+	if generatingExcess {
+		if err := ow.alerter.ExcessPowerAlert(); err != nil {
+			log.Fatal(err)
+		}
 	}
-
-	return nil
 }
