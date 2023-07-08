@@ -2,24 +2,24 @@ package overwatch
 
 import (
 	"icarus/internal/enphase"
+	"icarus/internal/utils"
 	"log"
 	"math"
 	"time"
 )
 
-type EnergyDelta struct {
+type energyDelta struct {
 	IntervalEnd time.Time
 	DeltaWh     int64
 }
 
-func Evaluate(consumptionMeter enphase.ConsumptionMeter, productionMeter enphase.ProductionMeter) bool {
+func IsExcessProduction(consumptionMeter enphase.ConsumptionMeter, productionMeter enphase.ProductionMeter) bool {
 	deltas := CalculateNets(consumptionMeter, productionMeter)
-	logDeltas(deltas)
 
 	return generatingExcess(deltas)
 }
 
-func CalculateNets(consumptionMeter enphase.ConsumptionMeter, productionMeter enphase.ProductionMeter) []EnergyDelta {
+func CalculateNets(consumptionMeter enphase.ConsumptionMeter, productionMeter enphase.ProductionMeter) []energyDelta {
 	consumptions := consumptionMeter.Intervals
 	productions := productionMeter.Intervals
 
@@ -33,44 +33,26 @@ func CalculateNets(consumptionMeter enphase.ConsumptionMeter, productionMeter en
 	}
 
 	intervals := len(productions)
-	deltas := make([]EnergyDelta, intervals)
+	deltas := make([]energyDelta, intervals)
 
 	for i := intervals - 1; i >= 0; i-- {
 		consumption = consumptions[i]
 		production = productions[i]
 
 		netPower := production.WhDel - consumption.Enwh
-		time := ParseTime(production.EndAt)
-		delta := EnergyDelta{IntervalEnd: time, DeltaWh: netPower}
+		time := utils.ParseUnixSeconds(production.EndAt)
+		delta := energyDelta{IntervalEnd: time, DeltaWh: netPower}
 		deltas[i] = delta
 	}
 
 	return deltas
 }
 
-func logDeltas(deltas []EnergyDelta) {
-	for _, delta := range deltas {
-		log.Printf("Delta: %+v", delta)
-	}
-
-	for _, delta := range positiveDeltas(deltas) {
-		log.Printf("Positive Delta: %+v", delta)
-	}
-}
-
-func positiveDeltas(deltas []EnergyDelta) (positives []EnergyDelta) {
-	for _, delta := range deltas {
-		if delta.DeltaWh > 0 {
-			positives = append(positives, delta)
-		}
-	}
-
-	return positives
-}
-
-func generatingExcess(deltas []EnergyDelta) bool {
+func generatingExcess(deltas []energyDelta) bool {
 	intervals := len(deltas)
 	lastFew := deltas[max(intervals-3, 0):intervals]
+
+	logDeltas(lastFew)
 
 	excess := true
 	for _, d := range lastFew {
@@ -82,8 +64,10 @@ func generatingExcess(deltas []EnergyDelta) bool {
 	return excess
 }
 
-func ParseTime(unixSeconds int64) time.Time {
-	return time.Unix(unixSeconds, 0)
+func logDeltas(deltas []energyDelta) {
+	for _, delta := range deltas {
+		log.Printf("Delta: %+v", delta)
+	}
 }
 
 func max(a int, b int) int {

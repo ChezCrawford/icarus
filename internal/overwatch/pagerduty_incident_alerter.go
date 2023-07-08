@@ -32,10 +32,11 @@ func verifyConnectivity(pdClient *pagerduty.Client, serviceId string) error {
 
 	service, err := pdClient.GetServiceWithContext(ctx, serviceId, nil)
 
-	log.Printf("Service: %+v, Error: %+v", service, err)
 	if err != nil {
 		return err
 	}
+
+	log.Printf("Found service with id: %+v, summary: %+v", service.ID, service.Summary)
 
 	return nil
 }

@@ -12,9 +12,12 @@ func main() {
 
 	config := overwatch.LoadConfig()
 
-	// client := enphase.NewClient(config.EnphaseAccessToken, config.EnphaseApiKey, config.EnphaseSystemId)
-	client := enphase.NewFileClient()
+	client := enphase.NewClient(config.EnphaseAccessToken, config.EnphaseApiKey, config.EnphaseSystemId)
 	alerter := overwatch.NewPagerDutyIncidentAlerter(config.PdServiceId, config.PdUserEmail, config.PdApiKey)
+
+	// Use these to fake stuff.
+	// client := enphase.NewFileClient()
+	// alerter := overwatch.NewLogAlerter()
 
 	watch := overwatch.NewOverwatch(client, config.EnphasePollFrequency, alerter)
 	watch.Start()

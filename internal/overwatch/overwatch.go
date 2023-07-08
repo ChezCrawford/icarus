@@ -45,7 +45,7 @@ func (ow *overwatch) monitorEnergy() {
 	consumption, _ := ow.client.GetConsumptionMeter()
 	production, _ := ow.client.GetProductionMeter()
 
-	generatingExcess := Evaluate(*consumption, *production)
+	generatingExcess := IsExcessProduction(*consumption, *production)
 	log.Printf("Excess power being generated: %+v", generatingExcess)
 
 	if generatingExcess {

@@ -3,8 +3,10 @@ package enphase
 import (
 	"encoding/json"
 	"errors"
+	"icarus/internal/utils"
 	"log"
 	"net/http"
+	"time"
 )
 
 const ApiUrl string = "https://api.enphaseenergy.com/api/v4"
@@ -72,12 +74,24 @@ type EnphaseClient struct {
 }
 
 func NewClient(accessToken string, apiKey string, systemId string) *EnphaseClient {
-	return &EnphaseClient{
+	enphaseClient := &EnphaseClient{
 		accessToken: accessToken,
 		apiKey:      apiKey,
 		client:      &http.Client{},
 		systemId:    systemId,
 	}
+
+	system, err := enphaseClient.GetSystemSummary()
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	log.Printf("Found Enphase system with id: %+v, status: %+v, and last report: %+v",
+		system.SystemId, system.Status, time.Unix(system.LastReportAt, 0))
+	log.Printf("System last reported: %+v, last interval ended: %+v",
+		utils.ParseUnixSeconds(system.LastReportAt), utils.ParseUnixSeconds(system.LastIntervalEndAt))
+
+	return enphaseClient
 }
 
 func (c EnphaseClient) GetConsumptionMeter() (*ConsumptionMeter, error) {
@@ -127,6 +141,7 @@ func (c EnphaseClient) GetSystemSummary() (*SystemSummary, error) {
 		log.Printf("Unable to create HTTP request: %v", err)
 		return nil, err
 	}
+
 	var response SystemSummary
 	err = c.doRequest(req, &response)
 	if err != nil {

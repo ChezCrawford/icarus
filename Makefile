@@ -1,3 +1,3 @@
-.PHONY: compile
-compile:
+.PHONY: build
+build:
 	go build -o ./bin/icarus icarus/cmd

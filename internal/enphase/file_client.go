@@ -19,7 +19,7 @@ func NewFileClient() *FileClient {
 	// Interesting intervals:
 	// 30 is where production begins
 	// 97 intervals in total
-	startInterval := 1
+	startInterval := 30
 
 	consumptionFile := "test/data/2022-09-15-consumption-meter.json"
 	productionFile := "test/data/2022-09-15-production-meter.json"
